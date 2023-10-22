@@ -1,8 +1,10 @@
+import ReduxProvider from '@/client/providers/redux-provider';
+import Header from '@/components/header';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Nunito_Sans } from 'next/font/google';
 import '../styles/main.scss';
 
-const inter = Inter({ subsets: ['latin'] });
+const nunitoSans = Nunito_Sans({ subsets: ['latin'], weight: ['400', '600'] });
 
 export const metadata: Metadata = {
 	title: 'Weather',
@@ -15,8 +17,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang='en'>
-			<body className={inter.className}>{children}</body>
+		<html lang='en' className='dark'>
+			<body className={nunitoSans.className}>
+				<ReduxProvider>
+					<Header />
+					{children}
+				</ReduxProvider>
+			</body>
 		</html>
 	);
 }
