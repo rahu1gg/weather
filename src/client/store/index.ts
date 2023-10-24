@@ -1,9 +1,11 @@
 import { Action, combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import clientReducer from './slices/client-slice';
 import serverReducer from './slices/server-slice';
 
 const rootReducer = combineReducers({
 	serverSlice: serverReducer,
+	clientSlice: clientReducer,
 });
 
 export const store = configureStore({
