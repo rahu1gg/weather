@@ -161,3 +161,26 @@ function FeelsLikeLoading() {
 		</div>
 	);
 }
+
+export function ForecastLoading() {
+	return (
+		<Fragment>
+			<section>
+				<div className='bg-muted/40 rounded-3xl p-8 mt-8'>
+					<h2 className='text-lg'>5 Days Forecast</h2>
+					<div className='pt-4'>
+						{[1, 2, 3, 4, 5].map((val, index) => (
+							<div key={`${index}`} className='flex items-center justify-between py-1'>
+								<Skeleton className='h-10 w-full' />
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2 className='text-lg pt-4 pb-3'>Today at</h2>
+				<div className='flex items-center justify-start gap-3 overflow-x-scroll'>loading...</div>
+			</section>
+		</Fragment>
+	);
+}

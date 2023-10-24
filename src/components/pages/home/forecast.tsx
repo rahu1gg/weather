@@ -2,26 +2,11 @@ import { store } from '@/client/store';
 import { OPEN_WEATHER_URL } from '@/constants/api';
 import { getCelcius } from '@/lib/utils/getCelcius';
 import { getHour } from '@/lib/utils/getHour';
+import { sleep } from '@/lib/utils/sleep';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { Fragment, Suspense } from 'react';
-
-function ForecastLoading() {
-	return (
-		<Fragment>
-			<section>
-				<div className='bg-muted/40 rounded-3xl p-8 mt-8'>
-					<h2 className='text-lg'>5 Days Forecast</h2>
-					<p>loading...</p>
-				</div>
-			</section>
-			<section>
-				<h2 className='text-lg pt-4 pb-3'>Today at</h2>
-				<div className='flex items-center justify-start gap-3 overflow-x-scroll'>loading...</div>
-			</section>
-		</Fragment>
-	);
-}
+import { ForecastLoading } from './loading';
 
 export default function Forecast() {
 	return (
@@ -66,6 +51,7 @@ async function getForecast() {
 }
 
 async function AllForecast() {
+	await sleep(5000);
 	const forecast = await getForecast();
 
 	return (
