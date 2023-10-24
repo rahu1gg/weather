@@ -1,7 +1,7 @@
 import { dispatch } from '@/client/store';
 import { setdefaultcoordinates } from '@/client/store/slices/server-slice';
 import Forecast from '@/components/pages/home/forecast';
-import { WeatherHighlights } from '@/components/pages/home/highlights';
+import { WeatherHighlights } from '@/components/pages/home/weather-highlights';
 import { DEFAULT_COORDINATES } from '@/constants/home';
 import { redirect } from 'next/navigation';
 
