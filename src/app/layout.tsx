@@ -1,5 +1,5 @@
 import ReduxProvider from '@/client/providers/redux-provider';
-import Header from '@/components/header';
+import Header from '@/components/pages/header';
 import type { Metadata } from 'next';
 import { Nunito_Sans } from 'next/font/google';
 import '../styles/main.scss';

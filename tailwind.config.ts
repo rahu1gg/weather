@@ -46,6 +46,18 @@ const config: Config = {
 			maxWidth: {
 				maxi: '1360px',
 			},
+			gridTemplateColumns: {
+				main: '360px repeat(1, 1fr)',
+			},
+			keyframes: {
+				'loading-rotate': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' },
+				},
+			},
+			animation: {
+				'loader-rotate': 'loading-rotate 0.2s ease-out infinite',
+			},
 		},
 	},
 	plugins: [],
