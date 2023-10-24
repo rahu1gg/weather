@@ -5,19 +5,7 @@ import { Calendar, Droplets, Eye, MapPin, Sunrise, Sunset, ThermometerSun, Waves
 import Image from 'next/image';
 import { Fragment, Suspense } from 'react';
 import { getAirQuality, getWeather } from './api';
-
-function WeatherHighlightsLoading() {
-	return (
-		<Fragment>
-			<section>
-				<div className='bg-muted/40 rounded-3xl p-8 w-full text-center'>loading...</div>
-			</section>
-			<section>
-				<div className='bg-muted/40 rounded-3xl p-8 w-full text-center'>loading...</div>
-			</section>
-		</Fragment>
-	);
-}
+import { WeatherHighlightsLoading } from './loading';
 
 export function WeatherHighlights() {
 	return (
@@ -70,6 +58,41 @@ async function Weather() {
 					</div>
 				</div>
 			</section>
+			{/* <section>
+				<div className='bg-muted/40 rounded-3xl p-8 w-full'>
+					<h2 className='text-lg'>Now</h2>
+					<div className='grid grid-cols-2 items-center justify-center py-3 gap-4'>
+						<p className='text-7xl leading-[1.1]'>
+							<Skeleton className='h-10 w-full' />
+						</p>
+						<div className='text-center'>
+							<Skeleton className='h-10 w-full' />
+						</div>
+					</div>
+					<p className='pb-3 pt-1 text-sm capitalize'>
+						<Skeleton className='h-4 w-full' />
+					</p>
+					<hr className='border-t w-full border-muted' />
+					<div className='pt-3 capitalize font-medium text-muted-foreground'>
+						<div className='flex items-center justify-start gap-3'>
+							<span>
+								<Calendar size={18} />
+							</span>
+							<p className='text-muted-foreground text-sm'>
+								<Skeleton className='h-5 w-full' />
+							</p>
+						</div>
+						<div className='flex items-center justify-start gap-3 pt-2.5'>
+							<span>
+								<MapPin size={18} />
+							</span>
+							<p className='text-muted-foreground text-sm'>
+								<Skeleton className='h-5 w-full' />
+							</p>
+						</div>
+					</div>
+				</div>
+			</section> */}
 			<section>
 				<div className='bg-muted/40 rounded-3xl p-8'>
 					<h2 className='text-lg mb-3.5'>Todays Highlights</h2>
