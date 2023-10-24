@@ -2,7 +2,6 @@ import { store } from '@/client/store';
 import { OPEN_WEATHER_URL } from '@/constants/api';
 import { getCelcius } from '@/lib/utils/getCelcius';
 import { getHour } from '@/lib/utils/getHour';
-import { sleep } from '@/lib/utils/sleep';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import { Fragment, Suspense } from 'react';
@@ -51,7 +50,6 @@ async function getForecast() {
 }
 
 async function AllForecast() {
-	await sleep(5000);
 	const forecast = await getForecast();
 
 	return (

@@ -169,7 +169,7 @@ export function ForecastLoading() {
 				<div className='bg-muted/40 rounded-3xl p-8 mt-8'>
 					<h2 className='text-lg'>5 Days Forecast</h2>
 					<div className='pt-4'>
-						{[1, 2, 3, 4, 5].map((val, index) => (
+						{[1, 2, 3, 4, 5].map((_, index) => (
 							<div key={`${index}`} className='flex items-center justify-between py-1'>
 								<Skeleton className='h-10 w-full' />
 							</div>
@@ -177,9 +177,16 @@ export function ForecastLoading() {
 					</div>
 				</div>
 			</section>
-			<section>
+			<section className='overflow-x-hidden'>
 				<h2 className='text-lg pt-4 pb-3'>Today at</h2>
-				<div className='flex items-center justify-start gap-3 overflow-x-scroll'>loading...</div>
+				<div className='flex items-center justify-start gap-3 overflow-x-scroll'>
+					{[1, 2, 3, 4, 5, 6, 7, 8].map((_, index) => (
+						<div key={`${index}`} className='grid grid-rows-2 gap-3'>
+							<Skeleton className='h-36 w-32' />
+							<Skeleton className='h-36 w-32' />
+						</div>
+					))}
+				</div>
 			</section>
 		</Fragment>
 	);
