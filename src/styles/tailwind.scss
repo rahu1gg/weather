@@ -65,6 +65,40 @@
         --ring: 240 4.9% 83.9%;
     }
 
+    ::selection {
+        background-color: hsl(var(--secondary));
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        background-color: hsl(var(--background));
+    }
+
+    ::-webkit-scrollbar:horizontal {
+        height: 10px;
+        background-color: hsl(var(--background));
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: hsl(var(--background));
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: hsl(var(--secondary));
+        transition-duration: 300ms;
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+        border-radius: 500px;
+        background-color: hsl(var(--secondary));
+        transition-duration: 300ms;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: hsl(var(--primary) / 0.2);
+        outline: none;
+    }
+
     *,
     *::before,
     *::after {

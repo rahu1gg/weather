@@ -81,7 +81,7 @@ async function AllForecast() {
 			</section>
 			<section className='overflow-x-hidden'>
 				<h2 className='text-lg pt-4 pb-3'>Today at</h2>
-				<div className='flex items-center justify-start gap-3 overflow-x-scroll'>
+				<div className='flex items-center justify-start gap-3 overflow-x-scroll pb-3'>
 					{forecast.list.slice(0, 8).map((val, index) => (
 						<div key={`${index}`} className='grid grid-rows-2 gap-3'>
 							<div className='bg-muted/40 rounded-2xl py-4 px-8 text-center'>
