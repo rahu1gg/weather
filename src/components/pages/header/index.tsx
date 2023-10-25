@@ -1,5 +1,4 @@
 import { DEFAULT_COORDINATES } from '@/constants/home';
-import { Search } from 'lucide-react';
 import Link from 'next/link';
 import { CurrentLocation, LocationInput } from './client';
 
@@ -13,13 +12,7 @@ export default function Header() {
 					</p>
 				</div>
 				<div className='w-full max-w-lg'>
-					<label
-						htmlFor='location-input'
-						className='flex items-center justify-start relative bg-muted/40 py-3 px-5 rounded-t-2xl hover:cursor-pointer'
-					>
-						<Search size={18} />
-						<LocationInput />
-					</label>
+					<LocationInput />
 				</div>
 				<div>
 					<CurrentLocation />

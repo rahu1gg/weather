@@ -25,14 +25,14 @@ const slice = createSlice({
 	name: 'client',
 	initialState,
 	reducers: {
-		setplaces: (state, action: PayloadAction<ClientState['header']['places']>) => {
-			state.header.places = action.payload;
-		},
-		setplacesloading: (state, action: PayloadAction<ClientState['header']['places']['loading']>) => {
-			state.header.places.loading = action.payload;
+		setplaces: (state, action: PayloadAction<Partial<ClientState['header']['places']>>) => {
+			state.header.places = {
+				...state.header.places,
+				...action.payload,
+			};
 		},
 	},
 });
 
-export const { setplaces, setplacesloading } = slice.actions;
+export const { setplaces } = slice.actions;
 export default slice.reducer;

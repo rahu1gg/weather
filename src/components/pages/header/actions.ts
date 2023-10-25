@@ -16,9 +16,9 @@ export async function getPlaces({ location }: { location: string }) {
 		if (!res.ok) {
 			throw new Error('Failed to fetch data');
 		}
-		return { success: true, data: (await res.json()) as Places };
+		return { success: true, data: (await res.json()) as Places, showPlaces: true };
 	} catch (err) {
 		console.log('error in redirect to current location', err);
-		return { success: false, data: [] };
+		return { success: false, data: [], showPlaces: false };
 	}
 }

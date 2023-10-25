@@ -1,87 +1,124 @@
 'use client';
 
-import { LocateFixed, MapPin } from 'lucide-react';
+import { dispatch, useAppSelector } from '@/client/store';
+import { setplaces } from '@/client/store/slices/client-slice';
+import { Skeleton } from '@/components/ui/skeleton';
+import { LocateFixed, MapPin, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FormEvent, Fragment, useEffect, useState } from 'react';
 import { redirectToCurrentLocation } from '../home/actions';
-import { getPlaces, type Places } from './actions';
+import { getPlaces } from './actions';
 
 export function LocationInput() {
+	const { places } = useAppSelector((state) => state.clientSlice).header;
 	const [location, setLocation] = useState('');
-	const [places, setPlaces] = useState<Places>([]);
-	const [loading, setLoading] = useState(false);
-	const [showPlaces, setShowPlaces] = useState(false);
 
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 	}
 
 	useEffect(() => {
-		if (location.length === 0) return;
+		if (location.length === 0) {
+			dispatch(setplaces({ loading: false, showPlaces: false, value: [] }));
+			return;
+		}
 		const timeoutId = setTimeout(async () => {
-			const res = await getPlaces({ location });
-			console.log(res);
-			if (res.success) {
-				setPlaces(res.data);
-				setShowPlaces(true);
+			const { data, showPlaces, success } = await getPlaces({ location });
+			if (success) {
+				dispatch(setplaces({ loading: false, showPlaces, value: data }));
 			}
-			setLoading(false);
-		}, 500);
+		}, 750);
 
 		return () => {
 			clearTimeout(timeoutId);
 		};
 	}, [location]);
 
-	function PlacesResponse() {
-		if (!showPlaces) return null;
+	return (
+		<Fragment>
+			<form onSubmit={handleSubmit} className='w-full relative'>
+				<label
+					htmlFor='location-input'
+					className={`flex items-center justify-start relative bg-muted/40 py-3 px-5 rounded-t-2xl hover:cursor-pointer duration-300 ${
+						places.loading || places.showPlaces ? 'rounded-b-none' : 'rounded-b-2xl'
+					}`}
+				>
+					<Search size={18} />
+					<input
+						className='outline-none text-sm pl-4 pr-10 bg-transparent placeholder:text-muted-foreground placeholder:text-sm capitalize w-full'
+						id='location-input'
+						value={location}
+						placeholder='Search city...'
+						name='location'
+						autoComplete='off'
+						onChange={(e) => {
+							setLocation(e.target.value);
+							dispatch(setplaces({ loading: true }));
+						}}
+						onBlur={() => setTimeout(() => dispatch(setplaces({ showPlaces: false })), 500)}
+						onFocus={() => location.length && dispatch(setplaces({ showPlaces: true }))}
+					/>
+				</label>
+				<PlacesResponse />
+			</form>
+		</Fragment>
+	);
+}
 
+function PlacesResponse() {
+	const { places } = useAppSelector((state) => state.clientSlice).header;
+
+	if (places.loading)
 		return (
 			<div className='absolute w-full top-full border-t border-border left-0 bg-[#151518] py-4 rounded-b-2xl shadow-xl pointer-events-none'>
-				{places.map((val, index) => (
+				{[1, 2, 3, 4, 5].map((_, index) => (
 					<div key={`${index}`}>
-						<Link
-							href={`/?lat=${val.lat}&lon=${val.lon}`}
-							className='flex items-center justify-start gap-4 py-3 px-4 duration-200 hover:bg-muted pointer-events-auto'
-						>
+						<div className='flex items-center justify-start gap-4 py-3 px-4 duration-200 hover:bg-muted pointer-events-auto'>
 							<span>
 								<MapPin className='text-muted-foreground' />
 							</span>
-							<div>
-								<p className='text-sm'>{val.name}</p>
-								<p className='text-xs text-muted-foreground'>
-									{val.state} {val.country}
-								</p>
+							<div className='w-full'>
+								<Skeleton className='h-4 w-full' />
+								<Skeleton className='h-3 mt-1 w-full' />
 							</div>
-						</Link>
+						</div>
 					</div>
 				))}
 			</div>
 		);
-	}
+
+	if (places.showPlaces && places.value?.length === 0)
+		return (
+			<div className='absolute w-full top-full border-t border-border left-0 bg-[#151518] py-4 rounded-b-2xl shadow-xl pointer-events-none'>
+				<p className='text-muted-foreground text-center text-sm'>No Places</p>
+			</div>
+		);
+
+	if (!places.showPlaces) return null;
 
 	return (
-		<Fragment>
-			<form onSubmit={handleSubmit} className='w-full relative'>
-				<input
-					className='outline-none text-sm pl-4 pr-10 bg-transparent placeholder:text-muted-foreground placeholder:text-sm capitalize w-full'
-					id='location-input'
-					value={location}
-					placeholder='Search city...'
-					name='location'
-					autoComplete='off'
-					onChange={(e) => {
-						setLocation(e.target.value);
-						setLoading(true);
-					}}
-				/>
-				{loading && (
-					<span className='absolute top-0 right-0 w-5 h-5 bg-transparent border border-t-muted-foreground border-x-transparent border-b-transparent rounded-full animate-loader-rotate' />
-				)}
-			</form>
-			<PlacesResponse />
-		</Fragment>
+		<div className='absolute w-full top-full border-t border-border left-0 bg-[#151518] py-4 rounded-b-2xl shadow-xl pointer-events-none'>
+			{places.value?.map((val, index) => (
+				<div key={`${index}`}>
+					<Link
+						href={`/?lat=${val.lat}&lon=${val.lon}`}
+						className='flex items-center justify-start gap-4 py-3 px-4 duration-200 hover:bg-muted pointer-events-auto'
+						onClick={() => dispatch(setplaces({ showPlaces: false }))}
+					>
+						<span>
+							<MapPin className='text-muted-foreground' />
+						</span>
+						<div>
+							<p className='text-sm'>{val.name}</p>
+							<p className='text-xs text-muted-foreground'>
+								{val.state} {val.country}
+							</p>
+						</div>
+					</Link>
+				</div>
+			))}
+		</div>
 	);
 }
 
