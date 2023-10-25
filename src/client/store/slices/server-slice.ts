@@ -6,21 +6,6 @@ interface ServerState {
 		latitude: string;
 		longitude: string;
 	};
-	weather: {
-		description: string;
-		icon: string;
-		temperature: number;
-		city: string;
-		country: string;
-		sunrise: number;
-		sunset: number;
-		humidity: number;
-		pressure: number;
-		visibility: number;
-		feelslike: number;
-		dt: number;
-		timezone: number;
-	} | null;
 }
 
 const initialState: ServerState = {
@@ -28,7 +13,6 @@ const initialState: ServerState = {
 		latitude: DEFAULT_COORDINATES.latitude,
 		longitude: DEFAULT_COORDINATES.longitude,
 	},
-	weather: null,
 };
 
 const slice = createSlice({
@@ -38,11 +22,8 @@ const slice = createSlice({
 		setdefaultcoordinates: (state, action: PayloadAction<ServerState['defaultCoordinates']>) => {
 			state.defaultCoordinates = action.payload;
 		},
-		setweather: (state, action: PayloadAction<ServerState['weather']>) => {
-			state.weather = action.payload;
-		},
 	},
 });
 
-export const { setdefaultcoordinates, setweather } = slice.actions;
+export const { setdefaultcoordinates } = slice.actions;
 export default slice.reducer;
