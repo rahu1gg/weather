@@ -88,18 +88,14 @@ function SunriseSunsetLoading() {
 						<h3 className='capitalize font-medium text-sm text-muted-foreground'>sunrise</h3>
 						<Sunrise size={18} />
 					</div>
-					<p className='text-2xl pt-1.5'>
-						<Skeleton className='w-full h-9' />
-					</p>
+					<Skeleton className='w-full h-9 mt-1.5' />
 				</div>
 				<div>
 					<div className='flex items-center justify-between'>
 						<h3 className='capitalize font-medium text-sm text-muted-foreground'>sunset</h3>
 						<Sunset size={18} />
 					</div>
-					<p className='text-2xl pt-1.5'>
-						<Skeleton className='w-full h-9' />
-					</p>
+					<Skeleton className='w-full h-9 mt-1.5' />
 				</div>
 			</div>
 		</div>
@@ -113,9 +109,7 @@ function HumidityLoading() {
 				<h3 className='capitalize font-semibold text-muted-foreground'>humidity</h3>
 				<Droplets size={20} />
 			</div>
-			<p className='text-2xl pt-4 pb-2.5'>
-				<Skeleton className='h-8 w-full' />
-			</p>
+			<Skeleton className='h-8 w-full mt-4 mb-2.5' />
 		</div>
 	);
 }
@@ -127,9 +121,7 @@ function PressureLoading() {
 				<h3 className='capitalize font-medium text-muted-foreground'>pressure</h3>
 				<Waves size={20} />
 			</div>
-			<p className='text-2xl pt-4 pb-2.5'>
-				<Skeleton className='h-8 w-full' />
-			</p>
+			<Skeleton className='h-8 w-full mt-4 mb-2.5' />
 		</div>
 	);
 }
@@ -141,9 +133,7 @@ function VisibilityLoading() {
 				<h3 className='capitalize font-medium text-muted-foreground'>visibility</h3>
 				<Eye size={20} />
 			</div>
-			<p className='text-2xl pt-4 pb-2.5'>
-				<Skeleton className='h-8 w-full' />
-			</p>
+			<Skeleton className='h-8 w-full mt-4 mb-2.5' />
 		</div>
 	);
 }
@@ -155,9 +145,7 @@ function FeelsLikeLoading() {
 				<h3 className='capitalize font-medium text-muted-foreground'>feels like</h3>
 				<ThermometerSun size={20} />
 			</div>
-			<p className='text-2xl pt-4 pb-2.5'>
-				<Skeleton className='h-8 w-full' />
-			</p>
+			<Skeleton className='h-8 w-full mt-4 mb-2.5' />
 		</div>
 	);
 }
