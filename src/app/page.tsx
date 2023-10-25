@@ -12,7 +12,7 @@ export default function Home({ searchParams }: { searchParams: { [key: string]: 
 	dispatch(setdefaultcoordinates({ latitude: lat as string, longitude: lon as string }));
 
 	return (
-		<main className='grid grid-cols-main max-w-maxi mx-auto gap-8 items-start'>
+		<main className='max-w-maxi mx-auto grid grid-cols-main grid-rows-none items-start gap-8'>
 			<WeatherHighlights />
 			<Forecast />
 		</main>

@@ -55,9 +55,9 @@ async function AllForecast() {
 	return (
 		<Fragment>
 			<section>
-				<div className='bg-muted/40 rounded-3xl p-8 mt-8'>
-					<h2 className='text-lg'>5 Days Forecast</h2>
-					<div className='pt-4'>
+				<div>
+					<h2 className='text-lg pb-3'>5 Days Forecast</h2>
+					<div className='pt-4 bg-muted/40 rounded-3xl p-8'>
 						{forecast.list
 							.filter((val, index) => !(index % 8) && val)
 							.map((val, index) => (
@@ -80,7 +80,7 @@ async function AllForecast() {
 				</div>
 			</section>
 			<section className='overflow-x-hidden'>
-				<h2 className='text-lg pt-4 pb-3'>Today at</h2>
+				<h2 className='text-lg pb-3'>Today at</h2>
 				<div className='flex items-center justify-start gap-3 overflow-x-scroll pb-3'>
 					{forecast.list.slice(0, 8).map((val, index) => (
 						<div key={`${index}`} className='grid grid-rows-2 gap-3'>

@@ -6,7 +6,7 @@ export default function Footer() {
 		<footer>
 			<div className='max-w-maxi mx-auto py-8 flex items-center justify-between text-muted-foreground text-sm'>
 				<div>
-					Made with ❤️ by{' '}
+					Built by{' '}
 					<Link href={'https://github.com/rahu1gg'} className='underline underline-offset-4 font-semibold' target='_blank' rel='noreferrer'>
 						rahu1gg
 					</Link>
