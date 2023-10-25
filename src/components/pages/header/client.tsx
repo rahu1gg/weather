@@ -52,6 +52,7 @@ export function LocationInput() {
 						placeholder='Search city...'
 						name='location'
 						autoComplete='off'
+						role='search'
 						onChange={(e) => {
 							setLocation(e.target.value);
 							dispatch(setplaces({ loading: true }));

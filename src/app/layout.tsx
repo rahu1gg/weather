@@ -1,4 +1,5 @@
 import ReduxProvider from '@/client/providers/redux-provider';
+import Footer from '@/components/pages/footer';
 import Header from '@/components/pages/header';
 import type { Metadata } from 'next';
 import { Nunito_Sans } from 'next/font/google';
@@ -22,6 +23,7 @@ export default function RootLayout({
 				<ReduxProvider>
 					<Header />
 					{children}
+					<Footer />
 				</ReduxProvider>
 			</body>
 		</html>
