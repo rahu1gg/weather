@@ -1,5 +1,5 @@
 import { store } from '@/client/store';
-import { AIR_QUALITY_URL, WEATHER_URL } from '@/constants/api';
+import { OPEN_WEATHER_URL } from '@/constants/api';
 
 export type Weather = {
 	weather: { description: string; icon: string }[];
@@ -18,7 +18,9 @@ export type Weather = {
 export async function getWeather() {
 	const { latitude, longitude } = store.getState().serverSlice.defaultCoordinates;
 
-	const res = await fetch(`${WEATHER_URL}?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}`, { cache: 'no-store' });
+	const res = await fetch(`${OPEN_WEATHER_URL}/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}`, {
+		cache: 'no-store',
+	});
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
 		throw new Error('Failed to fetch data');
@@ -40,7 +42,7 @@ export type AirQuality = {
 export async function getAirQuality() {
 	const { latitude, longitude } = store.getState().serverSlice.defaultCoordinates;
 
-	const res = await fetch(`${AIR_QUALITY_URL}?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}`, {
+	const res = await fetch(`${OPEN_WEATHER_URL}/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}`, {
 		cache: 'no-store',
 	});
 	if (!res.ok) {
