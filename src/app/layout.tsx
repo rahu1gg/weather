@@ -1,11 +1,11 @@
 import ReduxProvider from '@/client/providers/redux-provider';
 import Footer from '@/components/pages/footer';
 import Header from '@/components/pages/header';
+import '@/styles/main.scss';
 import type { Metadata } from 'next';
 import { Nunito_Sans } from 'next/font/google';
-import '../styles/main.scss';
 
-const nunitoSans = Nunito_Sans({ subsets: ['latin'], weight: ['400', '600'] });
+const nunitoSans = Nunito_Sans({ subsets: ['latin'], weight: ['400', '600'], display: 'swap' });
 
 export const metadata: Metadata = {
 	title: 'Weather',
